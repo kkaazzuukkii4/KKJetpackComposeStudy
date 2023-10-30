@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,10 +40,11 @@ class MainActivity2 : ComponentActivity() {
 
 @Composable
 private fun MyApp() {
-    var shouldShowOnboarding by remember { mutableStateOf(true) }
+    // rememberSaveableで状態を維持する
+    var shouldShowOnBoarding by rememberSaveable { mutableStateOf(true) }
 
-    if (shouldShowOnboarding) {
-        OnboardingScreen(onContinueClicked = { shouldShowOnboarding = false })
+    if (shouldShowOnBoarding) {
+        OnBoardingScreen(onContinueClicked = { shouldShowOnBoarding = false })
     } else {
         Greetings()
     }
@@ -50,7 +52,7 @@ private fun MyApp() {
 
 
 @Composable
-fun OnboardingScreen(
+fun OnBoardingScreen(
     onContinueClicked: () -> Unit, // 引数で関数を渡す
     modifier: Modifier = Modifier
 ) {
@@ -59,7 +61,7 @@ fun OnboardingScreen(
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text("Welcome to the Basics Codelab!")
+        Text("Welcome to the Basics CodeLab!")
         Button(
             modifier = Modifier.padding(vertical = 24.dp),
             onClick = onContinueClicked
@@ -103,7 +105,7 @@ fun Greeting(name: String) {
                     .padding(bottom = extraPadding)
             ) {
                 Text(text = "Hello,")
-                Text(text = "$name")
+                Text(text = name)
             }
             ElevatedButton(onClick = {
                 expanded.value = !expanded.value
@@ -133,8 +135,8 @@ fun GreetingsPreview() {
 
 @Preview(showBackground = true, widthDp = 320)
 @Composable
-fun OnboardingPreview() {
+fun OnBoardingPreview() {
     KKJetpackComposeStudyTheme {
-        OnboardingScreen(onContinueClicked = {}) // 空のラムダ式＝何もしない
+        OnBoardingScreen(onContinueClicked = {}) // 空のラムダ式＝何もしない
     }
 }
