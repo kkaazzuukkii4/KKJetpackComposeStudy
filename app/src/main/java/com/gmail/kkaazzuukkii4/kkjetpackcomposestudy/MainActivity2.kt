@@ -3,6 +3,9 @@ package com.gmail.kkaazzuukkii4.kkjetpackcomposestudy
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -74,7 +77,7 @@ fun OnBoardingScreen(
 @Composable
 fun Greetings(
     modifier: Modifier = Modifier,
-    names: List<String> = List(1000) {"$it"}
+    names: List<String> = List(1000) { "$it" }
 ) {
     Surface(
         modifier = modifier,
@@ -82,7 +85,7 @@ fun Greetings(
     ) {
         // 画面に表示されているアイテムのみをレンダリングする
         LazyColumn(modifier = modifier.padding(vertical = 4.dp)) {
-            items(items = names) {name ->
+            items(items = names) { name ->
                 Greeting(name = name)
             }
         }
@@ -92,7 +95,14 @@ fun Greetings(
 @Composable
 fun Greeting(name: String) {
     val expanded = remember { mutableStateOf(false) } // 再コンポジションに備えて記憶する
-    val extraPadding = if (expanded.value) 48.dp else 0.dp // 単純な計算を行うだけ
+    val extraPadding by animateDpAsState(
+        if (expanded.value) 48.dp else 0.dp, // 単純な計算を行うだけなのでremember不要
+        // アニメーションを加える
+        animationSpec = spring(
+            dampingRatio = Spring.DampingRatioMediumBouncy,
+            stiffness = Spring.StiffnessLow
+        )
+    )
 
     Surface(
         color = MaterialTheme.colorScheme.primary,
@@ -102,7 +112,8 @@ fun Greeting(name: String) {
             Column(
                 modifier = Modifier
                     .weight(1f)
-                    .padding(bottom = extraPadding)
+                    // アニメーション時に負数となる可能性があるため最小値を定義
+                    .padding(bottom = extraPadding.coerceAtLeast(0.dp))
             ) {
                 Text(text = "Hello,")
                 Text(text = name)
