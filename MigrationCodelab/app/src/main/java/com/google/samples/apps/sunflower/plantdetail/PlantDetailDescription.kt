@@ -40,6 +40,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.text.HtmlCompat
 import com.google.samples.apps.sunflower.R
 import com.google.samples.apps.sunflower.data.Plant
+import com.google.samples.apps.sunflower.theme.SunflowerTheme
 import com.google.samples.apps.sunflower.viewmodels.PlantDetailViewModel
 
 @Composable
@@ -76,7 +77,7 @@ private fun PlantDetailPreview() {
         30,
         ""
     )
-    MaterialTheme {
+    SunflowerTheme {
         PlantDetailContent(plant)
     }
 }
@@ -96,7 +97,7 @@ private fun PlantName(name: String) {
 @Preview
 @Composable
 private fun PlantNamePreview() {
-    MaterialTheme {
+    SunflowerTheme {
         PlantName("Apple")
     }
 }
@@ -131,7 +132,7 @@ private fun PlantWatering(wateringInterval: Int) {
 @Preview
 @Composable
 private fun PlantWateringPreview() {
-    MaterialTheme {
+    SunflowerTheme {
         PlantWatering(7)
     }
 }
@@ -160,7 +161,7 @@ private fun PlantDescription(description: String) {
 @Preview
 @Composable
 private fun PlantDescriptionPreview() {
-    MaterialTheme {
+    SunflowerTheme {
         PlantDescription("HTML<br><br>description")
     }
 }
