@@ -22,10 +22,17 @@ import android.view.LayoutInflater
 import android.view.Surface
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.app.ShareCompat
 import androidx.core.widget.NestedScrollView
@@ -165,6 +172,26 @@ class PlantDetailFragment : Fragment() {
     fun PlantDetailDescription() {
         Surface {
             Text(text = "Hello Compose")
+        }
+    }
+
+    @Composable
+    private fun PlantName(name: String) {
+        Text(
+            text = name,
+            style = MaterialTheme.typography.h5,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = dimensionResource(R.dimen.margin_small))
+                .wrapContentWidth(Alignment.CenterHorizontally)
+        )
+    }
+
+    @Preview
+    @Composable
+    private fun PlantNamePreview() {
+        MaterialTheme {
+            PlantName("Apple")
         }
     }
 }
