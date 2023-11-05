@@ -167,31 +167,4 @@ class PlantDetailFragment : Fragment() {
     interface Callback {
         fun add(plant: Plant?)
     }
-
-    @Composable
-    fun PlantDetailDescription() {
-        Surface {
-            Text(text = "Hello Compose")
-        }
-    }
-
-    @Composable
-    private fun PlantName(name: String) {
-        Text(
-            text = name,
-            style = MaterialTheme.typography.h5,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = dimensionResource(R.dimen.margin_small))
-                .wrapContentWidth(Alignment.CenterHorizontally)
-        )
-    }
-
-    @Preview
-    @Composable
-    private fun PlantNamePreview() {
-        MaterialTheme {
-            PlantName("Apple")
-        }
-    }
 }
