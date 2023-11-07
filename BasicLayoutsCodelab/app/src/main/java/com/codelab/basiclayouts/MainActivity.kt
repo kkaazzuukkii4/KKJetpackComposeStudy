@@ -22,17 +22,19 @@ import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Icon
@@ -143,10 +145,19 @@ fun FavoriteCollectionCard(
 
 // Step: Align your body row - Arrangements
 @Composable
-fun AlignYourBodyRow(
-    modifier: Modifier = Modifier
+private fun AlignYourBodyRow(
+    modifier: Modifier = Modifier,
+    items: List<DrawableStringPair>
 ) {
-    // Implement composable here
+    LazyRow(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        contentPadding = PaddingValues(horizontal = 16.dp),
+    ) {
+        items(items) { item ->
+            AlignYourBodyElement(drawable = item.drawable, text = item.text)
+        }
+    }
 }
 
 // Step: Favorite collections grid - LazyGrid
@@ -201,7 +212,7 @@ fun MySootheApp() {
     Surface {
         Column(Modifier.padding(0.dp)) {
             SearchBar(Modifier.padding(horizontal = 8.dp))
-            AlignYourBodyElement(Modifier.padding(8.dp))
+            AlignYourBodyRow(modifier = Modifier.padding(8.dp), items = alignYourBodyData)
             FavoriteCollectionCard(Modifier.padding(8.dp))
         }
     }
@@ -269,7 +280,7 @@ fun FavoriteCollectionsGridPreview() {
 @Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
 @Composable
 fun AlignYourBodyRowPreview() {
-    MySootheTheme { AlignYourBodyRow() }
+    MySootheTheme { AlignYourBodyRow(items = alignYourBodyData) }
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFFF5F0EE)
