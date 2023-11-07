@@ -31,4 +31,6 @@
     <string name="bottom_navigation_home">Home</string>
     <string name="bottom_navigation_profile">Profile</string>
     <string name="placeholder_search">Search</string>
+
+    <string name="no_content">No Content</string>
 </resources>
