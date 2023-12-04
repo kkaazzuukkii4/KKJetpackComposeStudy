@@ -58,6 +58,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi
+import androidx.compose.material3.windowsizeclass.WindowSizeClass
+import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
+import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -70,9 +74,13 @@ import androidx.compose.ui.unit.dp
 import com.codelab.basiclayouts.ui.theme.MySootheTheme
 
 class MainActivity : ComponentActivity() {
+    @OptIn(ExperimentalMaterial3WindowSizeClassApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { MySootheApp() }
+        setContent {
+            val windowSize = calculateWindowSizeClass(activity = this)
+            MySootheApp(windowSize)
+        }
     }
 }
 
@@ -345,9 +353,14 @@ fun MySootheAppLandscape() {
 
 // Step: MySoothe App
 @Composable
-fun MySootheApp() {
-    Surface {
-        MySootheAppPortrait()
+fun MySootheApp(windowSize: WindowSizeClass) {
+    when (windowSize.widthSizeClass) {
+        WindowWidthSizeClass.Compact -> {
+            MySootheAppPortrait()
+        }
+        WindowWidthSizeClass.Expanded -> {
+            MySootheAppLandscape()
+        }
     }
 }
 
