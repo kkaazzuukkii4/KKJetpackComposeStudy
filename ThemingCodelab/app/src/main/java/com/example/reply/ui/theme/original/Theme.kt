@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.reply.ui.theme
+package com.example.reply.ui.theme.original
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
