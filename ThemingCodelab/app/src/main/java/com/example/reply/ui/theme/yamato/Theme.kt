@@ -25,6 +25,7 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import com.example.reply.ui.theme.shapes
 import com.example.reply.ui.theme.typography
 
 private val LightColors = lightColorScheme(
@@ -103,6 +104,7 @@ fun AppTheme(
             if (useDarkTheme) dynamicDarkColorScheme(context)
             else dynamicLightColorScheme(context)
         }
+
         useDarkTheme -> DarkColors
         else -> LightColors
     }
@@ -110,6 +112,7 @@ fun AppTheme(
     MaterialTheme(
         colorScheme = colors,
         typography = typography, // 独自のタイポグラフィを設定し、MaterialTheme.typographyを使用してアクセスできるようにする
+        shapes = shapes,
         content = content
     )
 }

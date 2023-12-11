@@ -20,6 +20,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import com.example.reply.ui.theme.shapes
+import com.example.reply.ui.theme.typography
 
 // Material 3 color schemes
 private val DarkColorScheme = darkColorScheme(
@@ -46,6 +48,8 @@ fun ReplyTheme(
     }
     MaterialTheme(
         colorScheme = replyColorScheme,
+        typography = typography, // 独自のタイポグラフィを設定し、MaterialTheme.typographyを使用してアクセスできるようにする
+        shapes = shapes,
         content = content
     )
 }

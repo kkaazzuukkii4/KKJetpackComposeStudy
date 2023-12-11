@@ -52,7 +52,10 @@ fun ReplyEmailThreadItem(
         modifier = modifier
             .fillMaxWidth()
             .padding(16.dp)
-            .background(MaterialTheme.colorScheme.background)
+            .background(
+                color = MaterialTheme.colorScheme.background,
+                shape = MaterialTheme.shapes.medium
+            )
             .padding(20.dp) // 余白、paddingの定義順も大事
     ) {
         Row(modifier = Modifier.fillMaxWidth()) {
