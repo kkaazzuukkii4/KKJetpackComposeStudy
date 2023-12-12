@@ -29,6 +29,11 @@
         <item>Finish the essay</item>
         <item>Receive new packages</item>
         <item>Take a photo</item>
+        <item>Hoge1</item>
+        <item>Hoge2</item>
+        <item>Hoge3</item>
+        <item>Hoge4</item>
+        <item>Hoge5</item>
     </string-array>
     <string name="topics">Topics</string>
     <string-array name="topics">
